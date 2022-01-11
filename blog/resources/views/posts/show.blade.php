@@ -9,12 +9,13 @@
     <body>
        <h1>Blog Name</h1>
        <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
-       <form action="/post/{{$post->id}}"id="from_delete"method="post">
+       <form action="/posts/{{$post->id}}"id="form_delete"method="post">
            @csrf
            @method('delete') 
            <input type="submit" style="display:none">
            <p class="delete">[<span onclick="return deletePost(this);">delete</span>]</p>
-       </form>
+       </form> 
+       
        <div class='post'>
             <h2 class='title'>{{ $post->title }}</h2>
             <p class='body'>{{ $post->body }}</p>
@@ -27,7 +28,9 @@
             if(confirm('削除すると復元できません。\n本当に削除しますか？')){
                 document.getElementById('form_delete').submit();
             }
-        }
+        } //Web,PostController,showのいずれかが間違えてるかも？
+        //どこが間違えているか確認する。紹介しきれなかったmethodを使うのもあり。
+        
         </script>
     </body>
 </html>
