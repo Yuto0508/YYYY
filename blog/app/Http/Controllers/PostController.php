@@ -19,6 +19,16 @@ class PostController extends Controller
  {
      return view('posts/create');
  }
+ public function store(Post $post, PostRequest $request)
+  {
+    $input = $request['post'];
+    $post->fill($input)->save();
+    return redirect('/posts/' . $post->id);
+  }
+   public function edit(Post $post)
+{
+    return view('posts/edit')->with(['post' => $post]);
+}
  public function update(PostRequest $request, Post $post)
 {
     $input_post = $request['post'];
@@ -26,17 +36,9 @@ class PostController extends Controller
 
     return redirect('/posts/' . $post->id);
 }
- public function store(Post $post, PostRequest $request)
-  {
-    $input = $request['post'];
-    $post->fill($input)->save();
-    return redirect('/posts/' . $post->id);
-  }
-  public function edit(Post $post)
-{
-    return view('posts/edit')->with(['post' => $post]);
-}
-public function destroy(Post $post)
+ 
+ 
+public function delete(Post $post)
 {
     $post->delete();
     return redirect('/');

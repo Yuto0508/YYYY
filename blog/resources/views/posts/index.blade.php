@@ -9,18 +9,22 @@
     <body>
        <h1>Blog Name</h1>
        <p class='create'> [<a href='/posts/create'>create</a>]</p>
-       <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
-    @csrf
-    @method('DELETE')
-    <button type="submit">delete</button> 
-</form>
+    
+   
         <div class='posts'>
              @foreach ($posts as $post)
                 <div class='post'>
-                    <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-                    <p class='body'>{{ $post->body }}</p>
+                <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+                <p class='body'>{{ $post->body }}</p>
                 </div>
+                 <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">   
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit">delete</button> 
+         
+                 </form>
             @endforeach
+            
         </div>
         <div class='paginate'>
             {{ $posts->links() }}
