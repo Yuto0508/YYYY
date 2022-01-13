@@ -16,6 +16,7 @@
                 <div class='post'>
                 <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                 <p class='body'>{{ $post->body }}</p>
+                <a href="">{{ $post->category->name }}</a>
                 </div>
                  <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">   
                   @csrf
